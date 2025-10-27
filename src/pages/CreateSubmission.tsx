@@ -47,6 +47,9 @@ const CreateSubmission = () => {
     latitude: undefined as number | undefined,
     longitude: undefined as number | undefined,
     expectedVolunteers: 10,
+    expectedBeneficiaries: undefined as number | undefined,
+    organizationName: '',
+    organizationType: '',
     startDate: '',
     endDate: '',
     description: '',
@@ -80,6 +83,9 @@ const CreateSubmission = () => {
     latitude: undefined as number | undefined,
     longitude: undefined as number | undefined,
     expectedAttendees: 50,
+    expectedBeneficiaries: undefined as number | undefined,
+    organizationName: '',
+    organizationType: '',
     cost: 'Free',
     registrationDeadline: '',
     description: '',
@@ -124,6 +130,9 @@ const CreateSubmission = () => {
             latitude: data.latitude,
             longitude: data.longitude,
             expectedVolunteers: data.expectedVolunteers || 10,
+            expectedBeneficiaries: data.expectedBeneficiaries,
+            organizationName: data.organizationName || '',
+            organizationType: data.organizationType || '',
             startDate: data.startDate || '',
             endDate: data.endDate || '',
             description: data.description || '',
@@ -157,6 +166,9 @@ const CreateSubmission = () => {
             latitude: data.latitude,
             longitude: data.longitude,
             expectedAttendees: data.expectedAttendees || 50,
+            expectedBeneficiaries: data.expectedBeneficiaries,
+            organizationName: data.organizationName || '',
+            organizationType: data.organizationType || '',
             cost: data.cost || 'Free',
             registrationDeadline: data.registrationDeadline || '',
             description: data.description || '',
@@ -246,6 +258,9 @@ const CreateSubmission = () => {
           latitude: projectData.latitude,
           longitude: projectData.longitude,
           expectedVolunteers: projectData.expectedVolunteers,
+          expectedBeneficiaries: projectData.expectedBeneficiaries,
+          organizationName: projectData.organizationName,
+          organizationType: projectData.organizationType,
           startDate: projectData.startDate,
           endDate: projectData.endDate,
           description: projectData.description,
@@ -286,6 +301,9 @@ const CreateSubmission = () => {
           latitude: eventData.latitude,
           longitude: eventData.longitude,
           expectedAttendees: eventData.expectedAttendees,
+          expectedBeneficiaries: eventData.expectedBeneficiaries,
+          organizationName: eventData.organizationName,
+          organizationType: eventData.organizationType,
           cost: eventData.cost,
           registrationDeadline: eventData.registrationDeadline,
           description: eventData.description,
@@ -486,6 +504,58 @@ const CreateSubmission = () => {
                     className="w-full px-4 py-3 border-2 border-vibrant-orange/30 rounded-luxury focus:outline-none focus:ring-2 focus:ring-vibrant-orange focus:border-vibrant-orange font-luxury-body"
                     min="1"
                   />
+                </div>
+
+                <div>
+                  <label className="block font-luxury-medium text-black mb-2">
+                    Expected People Impacted
+                    <span className="text-sm text-gray-600 font-normal ml-2">(Beneficiaries)</span>
+                  </label>
+                  <input
+                    type="number"
+                    value={submissionType === 'project' ? projectData.expectedBeneficiaries || '' : eventData.expectedBeneficiaries || ''}
+                    onChange={(e) => handleInputChange('expectedBeneficiaries', e.target.value ? parseInt(e.target.value) : undefined)}
+                    className="w-full px-4 py-3 border-2 border-vibrant-orange/30 rounded-luxury focus:outline-none focus:ring-2 focus:ring-vibrant-orange focus:border-vibrant-orange font-luxury-body"
+                    min="0"
+                    placeholder="How many people will benefit?"
+                  />
+                  <p className="text-sm text-gray-600 mt-1">
+                    Estimated number of people who will be positively impacted by this {submissionType}
+                  </p>
+                </div>
+
+                <div>
+                  <label className="block font-luxury-medium text-black mb-2">
+                    Organization Name
+                  </label>
+                  <input
+                    type="text"
+                    value={submissionType === 'project' ? projectData.organizationName : eventData.organizationName}
+                    onChange={(e) => handleInputChange('organizationName', e.target.value)}
+                    className="w-full px-4 py-3 border-2 border-vibrant-orange/30 rounded-luxury focus:outline-none focus:ring-2 focus:ring-vibrant-orange focus:border-vibrant-orange font-luxury-body"
+                    placeholder="Community organization or group name"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-luxury-medium text-black mb-2">
+                    Organization Type
+                  </label>
+                  <select
+                    value={submissionType === 'project' ? projectData.organizationType : eventData.organizationType}
+                    onChange={(e) => handleInputChange('organizationType', e.target.value)}
+                    className="w-full px-4 py-3 border-2 border-vibrant-orange/30 rounded-luxury focus:outline-none focus:ring-2 focus:ring-vibrant-orange focus:border-vibrant-orange font-luxury-body"
+                  >
+                    <option value="">Select type</option>
+                    <option value="NGO">NGO (Non-Governmental Organization)</option>
+                    <option value="Community Group">Community Group</option>
+                    <option value="Religious Organization">Religious Organization</option>
+                    <option value="Educational Institution">Educational Institution</option>
+                    <option value="Healthcare Organization">Healthcare Organization</option>
+                    <option value="Social Enterprise">Social Enterprise</option>
+                    <option value="Volunteer Group">Volunteer Group</option>
+                    <option value="Other">Other</option>
+                  </select>
                 </div>
 
                 <div className="md:col-span-2">

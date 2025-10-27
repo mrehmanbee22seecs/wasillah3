@@ -9,6 +9,7 @@ export interface ProjectSubmission {
   id: string;
   title: string;
   description: string;
+  shortSummary?: string; // Brief summary for card display
   category: string;
   location: string;
   address?: string;
@@ -17,6 +18,9 @@ export interface ProjectSubmission {
   startDate: string;
   endDate: string;
   expectedVolunteers: number;
+  expectedBeneficiaries?: number; // Expected number of people to be impacted
+  organizationName?: string; // Community organization running the project
+  organizationType?: string; // Type of organization (NGO, Community Group, etc.)
   requirements: string[];
   objectives: string[];
   targetAudience?: string;
@@ -52,6 +56,7 @@ export interface EventSubmission {
   id: string;
   title: string;
   description: string;
+  shortSummary?: string; // Brief summary for card display
   category: string;
   date: string;
   time: string;
@@ -60,6 +65,9 @@ export interface EventSubmission {
   latitude?: number;
   longitude?: number;
   expectedAttendees: number;
+  expectedBeneficiaries?: number; // Expected number of people to be impacted
+  organizationName?: string; // Community organization hosting the event
+  organizationType?: string; // Type of organization (NGO, Community Group, etc.)
   registrationDeadline: string;
   requirements: string[];
   agenda: string[];

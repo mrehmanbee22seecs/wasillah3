@@ -126,6 +126,7 @@ const Projects = () => {
           id: doc.id,
           title: project.title,
           description: project.description,
+          shortSummary: project.shortSummary,
           category: project.category,
           location: project.location,
           address: project.address || '',
@@ -134,6 +135,9 @@ const Projects = () => {
           startDate: project.startDate,
           endDate: project.endDate,
           expectedVolunteers: project.expectedVolunteers,
+          expectedBeneficiaries: project.expectedBeneficiaries,
+          organizationName: project.organizationName,
+          organizationType: project.organizationType,
           requirements: project.requirements || [],
           objectives: project.objectives || [],
           targetAudience: project.targetAudience,
@@ -188,12 +192,12 @@ Or create the index in Firebase Console.
   const convertedApprovedProjects = approvedProjects.map(project => ({
     id: project.id,
     title: project.title,
-    description: (project as any).shortSummary || project.description,
+    description: project.shortSummary || project.description,
     icon: BookOpen,
     image: project.image || 'https://images.pexels.com/photos/1181533/pexels-photo-1181533.jpeg?auto=compress&cs=tinysrgb&w=800',
     status: 'ongoing',
     volunteers: project.expectedVolunteers,
-    beneficiaries: 200,
+    beneficiaries: project.expectedBeneficiaries || 0,
     duration: project.timeline,
     category: project.category,
     location: project.location,
@@ -458,9 +462,11 @@ Or create the index in Firebase Console.
                         <span>{project.duration}</span>
                       </div>
                     </div>
-                    <div className="text-sm text-gray-600">
-                      <span className="font-medium">{project.beneficiaries}</span> people impacted
-                    </div>
+                    {project.beneficiaries > 0 && (
+                      <div className="text-sm text-gray-600">
+                        <span className="font-medium">{project.beneficiaries}</span> people impacted
+                      </div>
+                    )}
                     <div className="text-sm text-vibrant-orange-dark font-medium">
                       Apply by: {project.deadline}
                     </div>
