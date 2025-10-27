@@ -9,6 +9,7 @@ export interface ProjectSubmission {
   id: string;
   title: string;
   description: string;
+  shortSummary?: string; // Brief summary for card display
   category: string;
   location: string;
   address?: string;
@@ -55,6 +56,7 @@ export interface EventSubmission {
   id: string;
   title: string;
   description: string;
+  shortSummary?: string; // Brief summary for card display
   category: string;
   date: string;
   time: string;
