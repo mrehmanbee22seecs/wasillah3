@@ -429,7 +429,26 @@ const ProjectDetail = () => {
                   <Clock className="w-6 h-6 mr-3 text-vibrant-orange" />
                   <span className="font-luxury-body">Apply by: {applicationDeadline}</span>
                 </div>
+                {displayProject.expectedBeneficiaries && (
+                  <div className="flex items-center text-black">
+                    <Target className="w-6 h-6 mr-3 text-vibrant-orange" />
+                    <span className="font-luxury-body">{displayProject.expectedBeneficiaries} people impacted</span>
+                  </div>
+                )}
               </div>
+
+              {/* Organization Information */}
+              {(displayProject.organizationName || displayProject.organizationType) && (
+                <div className="bg-vibrant-orange/10 p-6 rounded-luxury mb-8">
+                  <h3 className="text-lg font-luxury-heading text-black mb-2">Organized By</h3>
+                  {displayProject.organizationName && (
+                    <p className="text-black font-luxury-semibold">{displayProject.organizationName}</p>
+                  )}
+                  {displayProject.organizationType && (
+                    <p className="text-black/70 font-luxury-body text-sm">{displayProject.organizationType}</p>
+                  )}
+                </div>
+              )}
 
               <button
                 onClick={() => setShowApplication(true)}

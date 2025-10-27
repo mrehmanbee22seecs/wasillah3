@@ -425,7 +425,26 @@ const EventDetail = () => {
                   <Users className="w-6 h-6 mr-3 text-vibrant-orange" />
                   <span className="font-luxury-body">{attendees} expected</span>
                 </div>
+                {displayEvent.expectedBeneficiaries && (
+                  <div className="flex items-center text-black">
+                    <Star className="w-6 h-6 mr-3 text-vibrant-orange" />
+                    <span className="font-luxury-body">{displayEvent.expectedBeneficiaries} people impacted</span>
+                  </div>
+                )}
               </div>
+
+              {/* Organization Information */}
+              {(displayEvent.organizationName || displayEvent.organizationType) && (
+                <div className="bg-vibrant-orange/10 p-6 rounded-luxury mb-6">
+                  <h3 className="text-lg font-luxury-heading text-black mb-2">Hosted By</h3>
+                  {displayEvent.organizationName && (
+                    <p className="text-black font-luxury-semibold">{displayEvent.organizationName}</p>
+                  )}
+                  {displayEvent.organizationType && (
+                    <p className="text-black/70 font-luxury-body text-sm">{displayEvent.organizationType}</p>
+                  )}
+                </div>
+              )}
 
               <div className="bg-vibrant-orange/10 p-6 rounded-luxury mb-8">
                 <p className="text-black font-luxury-semibold">

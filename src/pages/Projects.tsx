@@ -193,7 +193,7 @@ Or create the index in Firebase Console.
     image: project.image || 'https://images.pexels.com/photos/1181533/pexels-photo-1181533.jpeg?auto=compress&cs=tinysrgb&w=800',
     status: 'ongoing',
     volunteers: project.expectedVolunteers,
-    beneficiaries: 200,
+    beneficiaries: (project as any).expectedBeneficiaries || 0,
     duration: project.timeline,
     category: project.category,
     location: project.location,
@@ -458,9 +458,11 @@ Or create the index in Firebase Console.
                         <span>{project.duration}</span>
                       </div>
                     </div>
-                    <div className="text-sm text-gray-600">
-                      <span className="font-medium">{project.beneficiaries}</span> people impacted
-                    </div>
+                    {project.beneficiaries > 0 && (
+                      <div className="text-sm text-gray-600">
+                        <span className="font-medium">{project.beneficiaries}</span> people impacted
+                      </div>
+                    )}
                     <div className="text-sm text-vibrant-orange-dark font-medium">
                       Apply by: {project.deadline}
                     </div>
